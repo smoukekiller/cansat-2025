@@ -3,6 +3,7 @@ import tkinter as tk
 import threading
 import serial
 import time
+from csv_handler import *
 
 
 #sigma constants
@@ -117,7 +118,7 @@ class Win:
 
 
 
-
+        self.dir = str(init_csv())+"/"
 
         self.zoom = 15
         #coordinates 
@@ -140,7 +141,7 @@ class Win:
         #create sigma map
         self.map_widget = tkintermapview.TkinterMapView(self.map_frame, width=600, height=600)
         self.map_widget.pack(fill="both", expand=True)
-        self.map_widget.set_position(self.start_latitude, self.start_longitude)  # San Francisco coordinates
+        self.map_widget.set_position(self.start_latitude, self.start_longitude)  
         self.map_widget.set_zoom(self.zoom)
 
         self.marker_of_prediction = self.map_widget.set_marker(0,0)
@@ -159,15 +160,12 @@ class Win:
                 arr = data.split(" ")
                 self.rawdata[int(arr[0])] = float(arr[2])
                 self.rawdatatimestpams[int(arr[0])] = int(arr[1])
+                write_to_csv(self.dir, int(arr[0]), float(arr[1]), float(arr[2]))
                 
 
 
 
 
-#skibidi update function
-# def update():
-#     print(1)
-#     root.after(1000, update)
 
 
 if __name__ == "__main__":
@@ -175,6 +173,3 @@ if __name__ == "__main__":
     
 
 
-#erhm what the sigma
-#sigma fishes rule the world
-#Kiril is gay

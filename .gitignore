@@ -24,6 +24,11 @@ pip-wheel-metadata/
 *.egg-info/
 .installed.cfg
 
+lib/
+lib64/
+bin/
+lib64
+
 # Virtual environments
 venv/
 ENV/

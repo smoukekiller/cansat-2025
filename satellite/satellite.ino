@@ -2,6 +2,7 @@
 #include "globals.h"
 #include "data_sender.h"
 #include "gps.h"
+#include "sd.h"
 #include <SoftwareSerial.h>
 #include <NMEAGPS.h>
 #include "CanSatNeXT.h"
@@ -10,6 +11,7 @@ void setup() {
   gpsPort.begin(9600);
   CanSatInit(RADIO_KEY);
   delay(500);
+  init_sd();
 
   SecondaryDataTimer = millis();
   PrimaryDataTimer = millis();

@@ -5,7 +5,7 @@
 
 //configs 
 #define PRIMARY_DATA_TIME 400 //time in milliseconds between sending primary data (Pressure, latitude, longitude)
-#define SECONDARY_DATA_TIME 1000 //time in milliseconds between sending secondary data
+#define SECONDARY_DATA_TIME 500 //time in milliseconds between sending secondary data
 #define RADIO_KEY 28 
 
 

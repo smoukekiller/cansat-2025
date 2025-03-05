@@ -8,6 +8,11 @@
 void SendPackage(char initial, uint32_t timeStamp, float payload) {
   char dataArray[1 + 4 + 4];
   dataArray[0] = initial;
+
+  appendFile(directory + String((int)initial) + ".csv", String(timeStamp) + ","+String(payload, 6) + "\r\n");
+//  Serial.println(directory + String((int)initial) + ".csv");
+//  Serial.println(String(timeStamp) + ","+String(payload, 6) + "\r\n");
+//  Serial.println(initial);
   memcpy(&dataArray[1], &timeStamp, 4);
   memcpy(&dataArray[5], &payload, 4);
   sendData(dataArray, 9);

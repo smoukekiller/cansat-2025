@@ -13,7 +13,7 @@
 #define ANTENNA_SERVO_PIN 27
 
 //important constants
-#define R 6371
+#define Radius 6371
 #define TO_RAD (3.1415926536 / 180)
 #define to_degree (180 / 3.1415926536)
 

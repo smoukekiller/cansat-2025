@@ -1,6 +1,8 @@
 #include "globals.h"
 
 Servo baseservo, antennaservo;
+SoftwareSerial gpsPort(18, 16);
+NMEAGPS gps;
 
 bool panic_mode_reversed = false;
 uint8_t panic_mode_angle = 0;
@@ -14,9 +16,9 @@ int current_angle_antenna = 0;
 
 float base_p;
 
-double longitude = 21.607290149524736;
+double longitude = 21.607290149524736, longitude_base;
 double altbar = 0;
-double latitude = 63.094387760941004;
+double latitude = 63.094387760941004, latitude_base;
 double delta_x;
 double delta_y;
 float t;

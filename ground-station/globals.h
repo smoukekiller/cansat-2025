@@ -2,7 +2,13 @@
 #define GLOBALS_H
 
 #include <Arduino.h>
+#include <SoftwareSerial.h>
+#include <NMEAGPS.h>
 #include <ESP32Servo.h>
+
+
+extern SoftwareSerial gpsPort;
+extern NMEAGPS gps;
 
 // Declare variables as extern so that they can be defined in globals.cpp
 extern Servo baseservo, antennaservo;
@@ -18,9 +24,9 @@ extern int current_angle_base;
 extern int current_angle_antenna;
 
 extern float base_p;
-extern double longitude;
+extern double longitude, longitude_base;
 extern double altbar;
-extern double latitude;
+extern double latitude, latitude_base;
 extern double delta_x;
 extern double delta_y;
 extern float t;

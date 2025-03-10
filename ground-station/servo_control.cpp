@@ -13,7 +13,7 @@ double distance_calc(double lat1, double lng1, double lat2, double lng2) {
   dz = sin(lat1) - sin(lat2);
   dx = cos(lng1) * cos(lat1) - cos(lat2);
   dy = sin(lng1) * cos(lat1);
-  return asin(sqrt(dx * dx + dy * dy + dz * dz) / 2) * 2 * R * 1000; // *1000 for metres
+  return asin(sqrt(dx * dx + dy * dy + dz * dz) / 2) * 2 * Radius * 1000; // *1000 for metres
 }
 
 //mid step in angle calculations, calculates distance between points

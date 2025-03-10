@@ -2,9 +2,10 @@
 #include "globals.h"
 #include "servo_control.h"
 #include "data_processing.h"
-#include "panic_mode.h"
 #include <ESP32Servo.h>
 #include <math.h>
+#include <SoftwareSerial.h>
+#include "gps.h"
 #include "CanSatNeXT.h"
 
 void setup() {
@@ -16,12 +17,13 @@ void setup() {
 
   panic_mode_timer = millis();
   RotatingTimer = millis();
-
+  
   antennaservo.setPeriodHertz(50);    // standard 50 hz servo
   antennaservo.attach(ANTENNA_SERVO_PIN, 500, 2500);
   baseservo.setPeriodHertz(50);
   baseservo.attach(BASE_SERVO_PIN, 500, 2500);
 
+  gpsPort.begin(9600);
   Serial.begin(115200);
   CanSatInit(RADIO_KEY);
 }
@@ -33,6 +35,8 @@ void loop() {
     slow_rotation();
     RotatingTimer = millis(); 
   }
+    writegps();
+
 //  // Example usage of servo movements (replace with actual logic)
 //  baseservo.write(90);
 //  antennaservo.write(90);

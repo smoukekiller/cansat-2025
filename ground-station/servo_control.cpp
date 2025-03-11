@@ -18,14 +18,14 @@ double distance_calc(double lat1, double lng1, double lat2, double lng2) {
 
 //mid step in angle calculations, calculates distance between points
 void CalculateDeltas() {
-  delta_x = distance_calc(base_lat, base_lon, base_lat, longitude);
-  delta_y = distance_calc(base_lat, base_lon, latitude, base_lon);
+  delta_x = distance_calc(latitude_base, longitude_base, latitude_base, longitude);
+  delta_y = distance_calc(latitude_base, longitude_base, latitude, longitude_base);
 
-  if (base_lon > longitude) {
+  if (longitude_base > longitude) {
     delta_x = delta_x * -1;
   }
 
-  if (base_lat > latitude) {
+  if (latitude_base > latitude) {
     delta_y = delta_y * -1;
   }
 }

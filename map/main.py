@@ -19,6 +19,8 @@ GYRO_Y = 0x08
 GYRO_Z = 0x09
 LIGHT = 0x0A
 BASEB = 0x0B
+GSLAT = 0x0C
+GSLON = 0x0D
 
 
 
@@ -59,6 +61,7 @@ class Win:
         #     label = tk.Label(self.data_frame, text=f"{name}:{value}", font=("Arial", 12), bg="lightgrey")
         #     label.pack(side="top", anchor="nw")
         self.marker_of_prediction.set_position(self.rawdata[LATITUDE], self.rawdata[LONGITUDE])
+        self.GS_marker.set_position(self.rawdata[GSLAT], self.rawdata[GSLON])
 
 
     def __init__(self) -> None:
@@ -82,7 +85,9 @@ class Win:
             "Gyro Y:",
             "Gyro Z:",
             "Light:",
-            "Base Pressure:"
+            "Base Pressure:",
+            "GS latitude",
+            "GS longitude"
         ]
 
 
@@ -99,12 +104,14 @@ class Win:
             0, #Gyro Z
             0, #Light 
             0, #Base p
+            0, #GS latitude
+            0  #GS longitude
         ]
 
         self.rawdatatimestpams = [
-            0, #Temperature
-            0, #Pressure
-            0, #Latitude
+            0.0, #Temperature
+            0.0, #Pressure
+            63.0, #Latitude
             0, #Longitude
             0, #accel X
             0, #accel Y
@@ -114,6 +121,8 @@ class Win:
             0, #Gyro Z
             0, #Light 
             0, #Base p
+            0, #GS latitude
+            0  #GS longitude
         ]
 
 
@@ -145,6 +154,7 @@ class Win:
         self.map_widget.set_zoom(self.zoom)
 
         self.marker_of_prediction = self.map_widget.set_marker(0,0)
+        self.GS_marker = self.map_widget.set_marker(0,0)
         
         self.thread = threading.Thread(target=self.ReadSerial, args=(), daemon=True)
         self.thread.start()

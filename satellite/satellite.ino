@@ -3,7 +3,9 @@
 #include "data_sender.h"
 #include "gps.h"
 #include "sd.h"
-#include <SoftwareSerial.h>
+
+
+
 #include <NMEAGPS.h>
 #include "CanSatNeXT.h"
 void setup() {

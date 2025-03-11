@@ -5,9 +5,6 @@
 
 //some configs
 #define ROTATION_TIME 50 //time in milleseconds that it takes to turn 1 degree
-#define PANIC_MODE_TIME 2000    //time in milliseconds that takes the station to go into panic mode after not receiving data
-#define PANIC_MODE_SPEED 30     //time in milliseconds that takes to turn 1 degree 
-#define PANIC_MODE_DEGREE 45    //vertical angle that the ground station will hold during the panic mode 
 #define RADIO_KEY 28            //radio key of the cansat
 #define BASE_SERVO_PIN 26
 #define ANTENNA_SERVO_PIN 27
@@ -17,9 +14,9 @@
 #define TO_RAD (3.1415926536 / 180)
 #define to_degree (180 / 3.1415926536)
 
-//coordinates of the ground station
-#define base_lon 21.608592
-#define base_lat 63.094071
+////coordinates of the ground station
+//#define base_lon 21.608592
+//#define base_lat 63.094071
 
 //identification bytes
 #define TEMPERATURE 0x00
@@ -34,5 +31,7 @@
 #define GYRO_Z 0x09
 #define LIGHT 0x0A
 #define BASEB 0x0B
+#define GSLAT 0x0C
+#define GSLON 0x0D
 
 #endif

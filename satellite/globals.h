@@ -11,7 +11,7 @@ extern NMEAGPS gps;
 
 extern float base_p;
 extern float latitude, longitude;
-extern uint32_t PrimaryDataTimer, SecondaryDataTimer, GpsTime;
+extern uint32_t PrimaryDataTimer, SecondaryDataTimer, GpsTime, SdCardTimer;
 extern bool flag;
 extern float ta, t, p, ax, ay, az, gx, gy, gz, light;
 extern String directory;

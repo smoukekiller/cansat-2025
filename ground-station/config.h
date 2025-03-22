@@ -30,7 +30,7 @@
 #define GYRO_Y 0x08
 #define GYRO_Z 0x09
 #define LIGHT 0x0A
-#define BASEB 0x0B
+#define BASEP 0x0B
 #define GSLAT 0x0C
 #define GSLON 0x0D
 

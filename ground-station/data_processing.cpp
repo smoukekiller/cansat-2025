@@ -20,6 +20,10 @@ void onBinaryDataReceived(const uint8_t *data, int len) {
   {
     case PRESSURE:
       p = payload;
+      altbar = (base_p - p) * (44330.0 / (5.255 * p));
+      break;
+    case BASEP:
+      base_p = payload;
       break;
     case LATITUDE:
       latitude = payload;

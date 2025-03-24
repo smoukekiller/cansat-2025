@@ -4,7 +4,7 @@
 #include <Arduino.h>
 
 //some configs
-#define ROTATION_TIME 50 //time in milleseconds that it takes to turn 1 degree
+#define ROTATION_TIME 30 //time in milleseconds that it takes to turn 1 degree
 #define RADIO_KEY 28            //radio key of the cansat
 #define BASE_SERVO_PIN 26
 #define ANTENNA_SERVO_PIN 27

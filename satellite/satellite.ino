@@ -45,14 +45,16 @@ void loop() {
     float gx    = readGyroX();
     float gy    = readGyroY();
     float gz    = readGyroZ();
-
+    writegps();
     // Append each sensor's value to its respective file using defined constants for file names
     appendFile(directory + String((int)TEMPERATURE) + ".csv", String(timeStamp) + "," + String(t, 6) + "\r\n");
     appendFile(directory + String((int)PRESSURE)    + ".csv", String(timeStamp) + "," + String(p, 6) + "\r\n");
     appendFile(directory + String((int)LIGHT)       + ".csv", String(timeStamp) + "," + String(light, 6) + "\r\n");
+    writegps();
     appendFile(directory + String((int)ACCELERATION_X) + ".csv", String(timeStamp) + "," + String(ax, 6) + "\r\n");
     appendFile(directory + String((int)ACCELERATION_Y) + ".csv", String(timeStamp) + "," + String(ay, 6) + "\r\n");
     appendFile(directory + String((int)ACCELERATION_Z) + ".csv", String(timeStamp) + "," + String(az, 6) + "\r\n");
+    writegps();
     appendFile(directory + String((int)GYRO_X)       + ".csv", String(timeStamp) + "," + String(gx, 6) + "\r\n");
     appendFile(directory + String((int)GYRO_Y)       + ".csv", String(timeStamp) + "," + String(gy, 6) + "\r\n");
     appendFile(directory + String((int)GYRO_Z)       + ".csv", String(timeStamp) + "," + String(gz, 6) + "\r\n");

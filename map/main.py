@@ -62,7 +62,7 @@ class Win:
             label = tk.Label(self.data_frame, text=f"{self.datanames[i]}{self.rawdata[i]}", font=("Arial", 12), bg="lightgrey")
             label.pack(anchor="nw")
         
-        distance = haversine(self.rawdata[2], self.rawdata[3], self.rawdata[12], self.rawdata[13])
+        distance = round(haversine(self.rawdata[2], self.rawdata[3], self.rawdata[12], self.rawdata[13]), 6)
         label = tk.Label(self.data_frame, text=f"distance:{distance*1000}", font=("Arial", 12), bg="lightgrey")
         label.pack(anchor="nw")
         # for name, value in self.data.items(): 
@@ -174,8 +174,9 @@ class Win:
         while True:
             data = self.ser.readline().decode('utf-8').strip()
             if data:
-                print(data)
+               
                 arr = data.split(" ")
+                print(data)
                 self.rawdata[int(arr[0])] = float(arr[2])
                 self.rawdatatimestpams[int(arr[0])] = int(arr[1])
                 write_to_csv(self.dir, int(arr[0]), float(arr[1]), float(arr[2]))

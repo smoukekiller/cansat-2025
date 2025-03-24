@@ -5,6 +5,10 @@ import serial
 import time
 from csv_handler import *
 
+from math import radians, sin, cos, sqrt, atan2
+
+def haversine(lat1, lon1, lat2, lon2):
+    return 6371 * (2 * atan2(sqrt(a := sin((dlat := radians(lat2 - lat1)) / 2)**2 + cos(radians(lat1)) * cos(radians(lat2)) * sin((dlon := radians(lon2 - lon1)) / 2)**2), sqrt(1 - a)))
 
 #sigma constants
 TEMPERATURE = 0x00
@@ -48,7 +52,7 @@ class Win:
         for widget in self.data_frame.winfo_children():
             widget.destroy()
         self.write_data()
-        self.PrintData()
+        # self.PrintData()
         self.root.after(1000, self.update)
 
     #sigma data
@@ -57,6 +61,10 @@ class Win:
         for i in range(len(self.datanames)):
             label = tk.Label(self.data_frame, text=f"{self.datanames[i]}{self.rawdata[i]}", font=("Arial", 12), bg="lightgrey")
             label.pack(anchor="nw")
+        
+        distance = haversine(self.rawdata[2], self.rawdata[3], self.rawdata[12], self.rawdata[13])
+        label = tk.Label(self.data_frame, text=f"distance:{distance*1000}", font=("Arial", 12), bg="lightgrey")
+        label.pack(anchor="nw")
         # for name, value in self.data.items(): 
         #     label = tk.Label(self.data_frame, text=f"{name}:{value}", font=("Arial", 12), bg="lightgrey")
         #     label.pack(side="top", anchor="nw")
@@ -166,7 +174,7 @@ class Win:
         while True:
             data = self.ser.readline().decode('utf-8').strip()
             if data:
-
+                print(data)
                 arr = data.split(" ")
                 self.rawdata[int(arr[0])] = float(arr[2])
                 self.rawdatatimestpams[int(arr[0])] = int(arr[1])

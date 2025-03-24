@@ -65,5 +65,5 @@ void SendGyro() {
   SendPackage(ACCELERATION_Z, Time, az);
   SendPackage(GYRO_X, Time, gx);
   SendPackage(GYRO_Y, Time, gy);
-  SendPackage(GY2O_Z, Time, gz);
+  SendPackage(GYRO_Z, Time, gz);
 }

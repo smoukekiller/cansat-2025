@@ -36,7 +36,7 @@ void WriteToServos()
   double anglvert;
   bool IsReversed = false;
   double dist = sqrt(delta_y * delta_y + delta_x * delta_x);
-  if (dist <= 20 ) {
+  if (dist <= 10 ) {
     wanted_angle_base = 90;
     wanted_angle_antenna = 90;
     //    baseservo.write(90);

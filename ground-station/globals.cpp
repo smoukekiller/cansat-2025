@@ -16,9 +16,9 @@ int current_angle_antenna = 0;
 
 float base_p;
 
-double longitude = 21.607290149524736, longitude_base;
+double longitude = 21.607290149524736, longitude_base = 21.603956;
 double altbar = 0;
-double latitude = 63.094387760941004, latitude_base;
+double latitude = 63.094387760941004, latitude_base = 63.091125;
 double delta_x;
 double delta_y;
 float t;

@@ -87,7 +87,7 @@ void WriteToServos()
 
     if (IsReversed) anglvert = 180 - anglvert;
     wanted_angle_antenna = anglvert;
-    //    antennaservo.write(anglvert);
+//    antennaservo.write(anglvert);
   }
 }
 

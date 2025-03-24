@@ -19,7 +19,6 @@ void setup() {
   PrimaryDataTimer = millis();
   GpsTime = millis();
   SdCardTimer = millis();
-
   // Calculate base pressure
   float sum = 0;
   for (int i = 0; i < 5; i++) {
@@ -57,6 +56,20 @@ void loop() {
     appendFile(directory + String((int)GYRO_X)       + ".csv", String(timeStamp) + "," + String(gx, 6) + "\r\n");
     appendFile(directory + String((int)GYRO_Y)       + ".csv", String(timeStamp) + "," + String(gy, 6) + "\r\n");
     appendFile(directory + String((int)GYRO_Z)       + ".csv", String(timeStamp) + "," + String(gz, 6) + "\r\n");
+  }
+
+  if (millis() - SdCardTimer >= SD_CARD_TIME)
+  {
+    uint32_t Time = millis();
+    p = readPressure();
+    t = readTemperature();
+    light = analogReadVoltage(LDR);
+    ax = readAccelX();
+    ay = readAccelY();
+    az = readAccelZ();
+    gx = readGyroX();
+    gy = readGyroY();
+    gz = readGyroZ();
   }
 
   if (millis() - PrimaryDataTimer >= PRIMARY_DATA_TIME) {

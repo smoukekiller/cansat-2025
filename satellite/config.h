@@ -4,7 +4,11 @@
 #include <Arduino.h>
 
 //configs 
+<<<<<<< HEAD
 #define SD_CARD_TIME 100
+=======
+#define SD_CARD_TIME 10
+>>>>>>> 9c5c68899529bd8f9e13651c72a654e59932ccd7
 #define PRIMARY_DATA_TIME 400 //time in milliseconds between sending primary data (Pressure, latitude, longitude)
 #define GPS_TIME 300
 #define SECONDARY_DATA_TIME 500 //time in milliseconds between sending secondary data

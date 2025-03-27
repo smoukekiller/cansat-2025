@@ -95,7 +95,8 @@ class Win:
             "Light:",
             "Base Pressure:",
             "GS latitude",
-            "GS longitude"
+            "GS longitude",
+            "RSSI:"
         ]
 
 
@@ -113,7 +114,10 @@ class Win:
             0, #Light 
             0, #Base p
             0, #GS latitude
-            0  #GS longitude
+            0, #GS longitude/
+            0, #RSSI
+            0, #BASESERVOANGLE
+            0, #ANTENNASRVOANGLE
         ]
 
         self.rawdatatimestpams = [
@@ -130,7 +134,10 @@ class Win:
             0, #Light 
             0, #Base p
             0, #GS latitude
-            0  #GS longitude
+            0,  #GS longitude
+            0,
+            0,
+            0,
         ]
 
 
@@ -174,13 +181,15 @@ class Win:
         while True:
             data = self.ser.readline().decode('utf-8').strip()
             if data:
-               
-                arr = data.split(" ")
-                print(data)
-                self.rawdata[int(arr[0])] = float(arr[2])
-                self.rawdatatimestpams[int(arr[0])] = int(arr[1])
-                write_to_csv(self.dir, int(arr[0]), float(arr[1]), float(arr[2]))
-                
+                try:
+                    arr = data.split(" ")
+                    if (len(arr) != 3): continue
+                    if (int(arr[0]) != 15 and int(arr[0]) != 16):print(data)
+                    self.rawdata[int(arr[0])] = float(arr[2])
+                    self.rawdatatimestpams[int(arr[0])] = int(arr[1])
+                    write_to_csv(self.dir, int(arr[0]), float(arr[1]), float(arr[2]))
+                except:
+                    pass
 
 
 

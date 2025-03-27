@@ -22,10 +22,9 @@ void setup() {
   antennaservo.attach(ANTENNA_SERVO_PIN, 500, 2500);
   baseservo.setPeriodHertz(50);
   baseservo.attach(BASE_SERVO_PIN, 500, 2500);
-
   gpsPort.begin(9600);
   Serial.begin(115200);
-  CanSatInit(RADIO_KEY);
+  GroundStationInit(RADIO_KEY);
 }
 
 void loop() {

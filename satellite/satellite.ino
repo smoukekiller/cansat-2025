@@ -26,7 +26,7 @@ void setup() {
     delay(500);
     Serial.println(sum);
   }
-
+ 
   base_p = sum / 5;
 }
 

@@ -24,5 +24,6 @@
 #define GYRO_Z 0x09
 #define LIGHT 0x0A
 #define BASEP 0x0B
+#define RSSIN 0x0C
 
 #endif

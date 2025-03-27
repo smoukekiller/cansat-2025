@@ -33,5 +33,8 @@
 #define BASEP 0x0B
 #define GSLAT 0x0C
 #define GSLON 0x0D
+#define RSSIN 0x0E
+#define BASESERVOANGLE 0x0F
+#define ANTENNASERVOANGLE 0x10
 
 #endif

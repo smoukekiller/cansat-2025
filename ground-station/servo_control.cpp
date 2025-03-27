@@ -99,4 +99,7 @@ void slow_rotation()
   if (current_angle_antenna > wanted_angle_antenna)current_angle_antenna--;
   else if (current_angle_antenna < wanted_angle_antenna)current_angle_antenna++;
   antennaservo.write(current_angle_antenna);
+  Serial.println(String(BASESERVOANGLE) + " " + String(millis()) + " " + String(current_angle_base));
+  Serial.println(String(ANTENNASERVOANGLE) + " " + String(millis()) + " " + String (current_angle_antenna));
+  
 }

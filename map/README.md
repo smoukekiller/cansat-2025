@@ -4,7 +4,7 @@ Small Python/Tkinter tool used in the CanSat ground station to visualize live te
 
 ## What it does
 - Reads telemetry from the ESP32 ground station over USB serial (default: `/dev/ttyUSB0`, 115200 baud)
-- Expects lines in the format: <field_id> <timestamp> <value>
+- Expects lines in the format: (field_id) (timestamp) (value)
 - Displays:
 - CanSat position (lat/lon)
 - Ground station position (lat/lon)

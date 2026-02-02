@@ -18,7 +18,7 @@ ESP32 firmware used to receive CanSat telemetry, read ground station GPS, contro
 - `data_processing.*` – packet decoding and output
 
 ## Serial output
-<field_id> <timestamp> <value>
+(field_id) (timestamp) (value)
 Used by the Python map UI and CSV logger.
 
 ## Build

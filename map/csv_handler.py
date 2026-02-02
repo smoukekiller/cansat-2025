@@ -1,5 +1,12 @@
 import os
 
+"""
+inits the csv handling with init_csv, in order to not override any data and clearly 
+separate it, creates numbered directories
+
+Takes the data from the serialPort and writes to csv with write_to_csv
+"""
+
 def write_to_csv(directory: str, init_byte: int, timestamp: int, value) -> None:
     filename = directory+str(init_byte) + ".csv"
     with open(filename, "a") as f:

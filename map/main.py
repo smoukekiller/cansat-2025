@@ -10,7 +10,6 @@ from math import radians, sin, cos, sqrt, atan2
 def haversine(lat1, lon1, lat2, lon2):
     return 6371 * (2 * atan2(sqrt(a := sin((dlat := radians(lat2 - lat1)) / 2)**2 + cos(radians(lat1)) * cos(radians(lat2)) * sin((dlon := radians(lon2 - lon1)) / 2)**2), sqrt(1 - a)))
 
-#sigma constants
 TEMPERATURE = 0x00
 PRESSURE = 0x01
 LATITUDE = 0x02
@@ -28,7 +27,6 @@ GSLON = 0x0D
 
 
 
-#sigma main class
 class Win:
 
     def PrintData(self) -> None:
@@ -47,7 +45,6 @@ class Win:
 
 
 
-    #new skibidi update function
     def update(self) -> None:
         for widget in self.data_frame.winfo_children():
             widget.destroy()
@@ -55,7 +52,6 @@ class Win:
         # self.PrintData()
         self.root.after(1000, self.update)
 
-    #sigma data
     def write_data(self) -> None:
 
         for i in range(len(self.datanames)):
@@ -73,9 +69,8 @@ class Win:
 
 
     def __init__(self) -> None:
-        #create sigma window
         self.root = tk.Tk()
-        self.root.title("Sigma fish map")
+        self.root.title("CanSat Telemetry Map")
         self.root.geometry("1920x1080")  
         self.timer = time.time()
         self.ser = serial.Serial('/dev/ttyUSB0', baudrate=115200, timeout=1)
@@ -99,7 +94,8 @@ class Win:
             "RSSI:"
         ]
 
-
+        # rawdata is indexed directly by telemetry field ID for fast lookup
+        # Index positions must match IDs defined in the firmware
         self.rawdata = [
             0.0, #Temperature
             0.0, #Pressure
@@ -145,24 +141,20 @@ class Win:
         self.dir = str(init_csv())+"/"
 
         self.zoom = 15
-        #coordinates 
+
         self.start_latitude, self.start_longitude = 63.094227, 21.608214
-        #create sigma Frames 
         self.map_frame = tk.Frame(self.root, width=600, height=600)
         self.data_frame = tk.Frame(self.root, width=400, height=600, bg="lightgrey")
         self.marker_latitude, self.marker_longitude = 63.094227, 21.608214
 
-        #some settings that I found in google that allow window to scale properly
         self.root.grid_rowconfigure(0, weight=1)
         self.root.grid_columnconfigure(0, weight=1)
         self.root.grid_columnconfigure(1, weight=0)
 
 
-        #assign sigma frames to sigma grids
         self.map_frame.grid(row=0, column=0, sticky="nsew")
         self.data_frame.grid(row=0, column=1, sticky="nsew")
 
-        #create sigma map
         self.map_widget = tkintermapview.TkinterMapView(self.map_frame, width=600, height=600)
         self.map_widget.pack(fill="both", expand=True)
         self.map_widget.set_position(self.start_latitude, self.start_longitude)  
@@ -171,14 +163,24 @@ class Win:
         self.marker_of_prediction = self.map_widget.set_marker(0,0)
         self.GS_marker = self.map_widget.set_marker(0,0)
         
+        #Serial runs in the background to allow TKinter to run
         self.thread = threading.Thread(target=self.ReadSerial, args=(), daemon=True)
         self.thread.start()
 
         self.root.after(100, self.update)
         self.root.mainloop()
-    
+
+
     def ReadSerial(self):
+        """
+        Reads telemetry lines from serial in the format:
+        <field_id> <timestamp> <value>
+
+        field_id is used directly as an index into rawdata arrays.
+        Lines not matching this format are ignored.
+        """
         while True:
+
             data = self.ser.readline().decode('utf-8').strip()
             if data:
                 try:
@@ -189,7 +191,9 @@ class Win:
                     self.rawdatatimestpams[int(arr[0])] = int(arr[1])
                     write_to_csv(self.dir, int(arr[0]), float(arr[1]), float(arr[2]))
                 except:
+                    # Ignore malformed or partial serial lines to keep UI responsive
                     pass
+
 
 
 

@@ -28,3 +28,10 @@ USB serial baud rate: **115200**.
 ## Notes
 Configuration is done in `config.h`.  
 Error handling is minimal to keep the main loop non-blocking during live operation.
+
+## Hardware
+
+3D-printed, servo-driven antenna mount used by the ground station.
+
+![Antenna assembly](hardware/Assembled_antenna.jpeg)
+![CAD image](hardware/CAD_image.jpg)

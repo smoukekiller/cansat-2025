@@ -1,16 +1,21 @@
-# CanSat Competition 2025 - CurbAllSpace Team
+# CanSat Competition 2025 – CurbAllSpace Team
 
-This repository contains the code base for the **CurbAllSpace** team's entry in the **CanSat 2025** competition.
+Codebase for the CurbAllSpace team’s CanSat 2025 entry.
 
----
+The project consists of three main components:
+- Flight firmware running on the CanSat payload
+- ESP32-based ground station firmware
+- Python map UI for live telemetry visualization and logging
 
-## Project Structure
+## Repository structure
 
-```plaintext
-cansat-2025/
-├── map/                 # Python script for data processing and display
-│   └──                  # Run on a laptop, uses tkintermapview library
-├── satellite/           # Code for the satellite's ESP board
-│   └──                  # Collects and transmits data to the ground station
-└── ground-station/      # Manages data reception and hardware control
-    └──                  # Controls servos for antenna adjustment
+- `satellite/`  
+  Flight firmware for the CanSat payload (GPS, sensors, SD logging, telemetry)
+
+- `ground-station/`  
+  ESP32 ground station firmware (radio reception, GPS, antenna control)
+
+- `map/`  
+  Python/Tkinter map UI used on the laptop to visualize telemetry and log data
+
+Each component contains its own README with details on functionality and usage.

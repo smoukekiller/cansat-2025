@@ -4,9 +4,9 @@
 #include <Arduino.h>
 
 //configs 
-#define SD_CARD_TIME 200
+#define SD_CARD_TIME 200 //time in milliseconds between sd card logging
 #define PRIMARY_DATA_TIME 400 //time in milliseconds between sending primary data (Pressure, latitude, longitude)
-#define GPS_TIME 300
+#define GPS_TIME 300 //time in milliseconds between GPS reading attempts 
 #define SECONDARY_DATA_TIME 500 //time in milliseconds between sending secondary data
 #define RADIO_KEY 28 
 
